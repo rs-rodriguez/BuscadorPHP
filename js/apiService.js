@@ -1,8 +1,8 @@
 $(function(){
-    var Bienes = {
+    var Proceso = {
       formulario: $('#formulario'),
       $btnTodos: $('#mostrarTodos'),
-      contBienes: $('#bienes'),
+      contDiv: $('#resultados'),
   
       Init: function(){
         var self = this
@@ -10,13 +10,13 @@ $(function(){
         self.cargarTodos()
         self.formulario.submit(function(e){
           e.preventDefault()
-          self.searchBienes()
+          self.search()
         })
       },
       cargarSelect: function(){
         $('select').material_select()
       },
-      searchBienes: function(e){
+      search: function(e){
         var self = this
         var ciudad = $('form').find('select[id="selectCiudad"]').val()
         var tipo = $('form').find('select[id="selectTipo"]').val()
@@ -29,7 +29,9 @@ $(function(){
       cargarTodos: function(){
         var self = this
         self.$btnTodos.on('click', (e)=>{
-          var datos = {todos: ""}
+          var datos = {
+              todos: ""
+          }
           self.ajaxData(datos)
         })
       },
@@ -41,7 +43,7 @@ $(function(){
           data: datos
         }).done(function(data){
           var newData = JSON.parse(data)
-          self.renderBienes(newData)
+          self.render(newData)
         })
       },
       toNumero: function(num){
@@ -49,13 +51,13 @@ $(function(){
         var newNumero = Number(numero.replace('$', '').replace(',', '').replace(' ', ''))
         return newNumero
       },
-      renderBienes: function(bienes){
+      render: function(items){
         var self = this
-        var bien = bienes
-        self.contBienes.html('')
+        var item = items
+        self.contDiv.html('')
   
-        bien.map((item)=>{
-          var bienTemplate = '<div class="itemMostrado card horizontal ">'+
+        item.map((item)=>{
+          var template = '<div class="itemMostrado card horizontal ">'+
                                 '<div class="col s6">'+
                                   '<img src="img/home.jpg">'+
                                 '</div>'+
@@ -88,16 +90,16 @@ $(function(){
                               '</div>'+
                               '</div>';
   
-          var newBien = bienTemplate.replace(':direccion:', item.Direccion)
+          var newItem = template.replace(':direccion:', item.Direccion)
                                     .replace(':ciudad:', item.Ciudad)
                                     .replace(':telefono:', item.Telefono)
                                     .replace(':codigo_postal:', item.Codigo_Postal)
                                     .replace(':precio:', item.Precio)
                                     .replace(':tipo:', item.Tipo)
-          self.contBienes.append(newBien)
+          self.contDiv.append(newItem)
         })
       }
     }
-    Bienes.Init()
+    Proceso.Init()
   })
   
