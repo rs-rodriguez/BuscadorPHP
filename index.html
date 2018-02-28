@@ -13,14 +13,14 @@
 </head>
 
 <body>
-  <video src="img/video.mp4" id="vidFondo"></video>
+  <!--<video src="img/video.mp4" id="vidFondo"></video>!-->
 
   <div class="contenedor">
     <div class="card rowTitulo">
       <h1>Buscador</h1>
     </div>
     <div class="colFiltros">
-      <form action="buscador.php" method="post" id="formulario">
+      <form action="core/buscar.php" method="post" id="formulario">
         <div class="filtrosContenido">
           <div class="tituloFiltros">
             <h5>Realiza una búsqueda personalizada</h5>
@@ -28,13 +28,22 @@
           <div class="filtroCiudad input-field">
             <label for="selectCiudad">Ciudad:</label>
             <select name="ciudad" id="selectCiudad">
-              <option value="" selected>Elige una ciudad</option>
+              <option value="" disabled selected>Elige una ciudad</option>
+              <option value="New York">New York</option>
+              <option value="Orlando">Orlando</option>
+              <option value="Los Angeles">Los Angeles</option>
+              <option value="Houston">Houston</option>
+              <option value="Washington">Washington</option>
+              <option value="Miami">Miami</option>
             </select>
           </div>
           <div class="filtroTipo input-field">
             <label for="selecTipo">Tipo:</label><br>
             <select name="tipo" id="selectTipo">
-              <option value="" selected>Elige un tipo</option>
+              <option value=""disabled selected>Elige un tipo</option>
+              <option value="Casa">Casa</option>
+              <option value="Casa de Campo">Casa de Campo</option>
+              <option value="Apartamento">Apartamento</option>
             </select>
           </div>
           <div class="filtroPrecio">
@@ -62,5 +71,6 @@
   <script type="text/javascript" src="js/ion.rangeSlider.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script type="text/javascript" src="js/apiService.js"></script>
 </body>
 </html>
